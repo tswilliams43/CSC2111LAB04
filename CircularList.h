@@ -150,7 +150,8 @@ void CircularList<T>::remove(int index)
 
       if (sze == 1) //special case
       {
-
+		 delete loc;
+		 loc_pos=0;
 
 
 
@@ -169,7 +170,10 @@ void CircularList<T>::remove(int index)
             prev = find(1)->getPrev();
          }
 		 after=loc->getNext();
+		 loc=prev->getNext();
          loc_pos=index;
+		 prev->setNext(after);
+		 delete loc;
 		 
 
 
