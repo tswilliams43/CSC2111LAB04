@@ -76,7 +76,7 @@ DoubleNode<T>* CircularList<T>::find(int index)
    //DO THIS which distance is smaller?
    //find the minimum distance using absolute value
    //set min_dist to the smaller value, keeping the sign
-   if(dist_next>=abs(dist_prev))
+   if(abs(dist_next)>=abs(dist_prev))
    {
       min_dist=dist_prev;
    }
@@ -150,12 +150,14 @@ void CircularList<T>::remove(int index)
 
       if (sze == 1) //special case
       {
-		 delete loc;
-		 loc_pos=0;
-
-
-
-
+	/*
+		 prev=0;
+		 after=0;
+	*/
+		loc_pos=NULL;
+		loc = NULL;
+		delete loc;
+		 
 
       }
       else
@@ -169,12 +171,11 @@ void CircularList<T>::remove(int index)
          {
             prev = find(1)->getPrev();
          }
-		 after=loc->getNext();
 		 loc=prev->getNext();
-         loc_pos=index;
+		 after=loc->getNext();
 		 prev->setNext(after);
 		 delete loc;
-		 
+		 loc_pos=index;
 
 
 
